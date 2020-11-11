@@ -5,11 +5,11 @@ import './Form.css';
 
 const schema = yup.object().shape({
     username: 
-    yup.string().required('username field is required').min(6, 'username length must be atleast 6 characters.'),
+    yup.string().required('username field is required').min(3, 'username length must be atleast 3 characters.'),
     email: 
-    yup.string().required('username field is required'),
+    yup.string().email().required('email field is required'),
     password: 
-    yup.string().required('password field is required').min(12, 'password length must be atleast 12 characters.'),
+    yup.string().required('password field is required').min(6, 'password length must be atleast 6 characters.'),
     agree: 
     yup.boolean().oneOf([true], 'You must accept the Terms of Service to proceed.'),
 })
@@ -28,9 +28,8 @@ function Form() {
         password: '',
         agree: '',
     })
-    const [ user, setUser ] = useState({
-        setForm
-    })
+    const [ user, setUser ] = useState({})
+    
     const [ disabled, setDisabled ] = useState(true)
 
     const setFormErrors =(name, value) => {
@@ -96,19 +95,19 @@ function Form() {
         <form className='form' onSubmit={submit}>
             <label>
                 User:
-                <input onChange={change} value={form.username} name='username' type='text' />
+                <input onChange={change} value={form.username} name='username' type='text' placeholder="Username Here"/>
             </label>
             <br />
 
             <label>
                 Email:
-                <input onChange={change} value={form.email} name='email' type='text' />
+                <input onChange={change} value={form.email} name='email' type='text' placeholder='Email Here' />
             </label>
             <br />
 
             <label>
                 Password:
-                <input onChange={change} value={form.password} name='password' type='text' />
+                <input onChange={change} value={form.password} name='password' type='text'placeholder='Password Here'  />
             </label>
             <br />
 
@@ -125,16 +124,16 @@ function Form() {
         </div>
         <div style={{ color: 'cyan'}}>
             <div>
-                <strong>Username: <span style={{ color: '#121212'}}>{user.username}</span></strong>
+                <strong>Username: <span style={{ color: 'red'}}>{user.username}</span></strong>
             </div>
             <div>
-                <strong>Email: <span style={{ color: '#121212'}}>{user.email}</span></strong>
+                <strong>Email: <span style={{ color: 'red'}}>{user.email}</span></strong>
             </div>
             <div>
-                <strong>Password: <span style={{ color: '#121212'}}>{user.password}</span></strong>
+                <strong>Password: <span style={{ color: 'red'}}>{user.password}</span></strong>
             </div>
             <div>
-                <strong>Did user agree to TOS?: <span style={{ color: '#121212'}}>{user.agree}</span></strong>
+                <strong>Did user agree to TOS?: <span style={{ color: 'red'}}>{user.agree}</span></strong>
             </div>
         </div>
         </div>
