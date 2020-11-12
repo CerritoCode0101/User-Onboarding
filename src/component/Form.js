@@ -3,6 +3,8 @@ import * as yup from 'yup';
 import axios from 'axios'
 import './Form.css';
 
+
+
 const schema = yup.object().shape({
     username: 
     yup.string().required('username field is required').min(3, 'username length must be atleast 3 characters.'),
@@ -29,7 +31,7 @@ function Form() {
         agree: '',
     })
     const [ user, setUser ] = useState({})
-    
+
     const [ disabled, setDisabled ] = useState(true)
 
     const setFormErrors =(name, value) => {
